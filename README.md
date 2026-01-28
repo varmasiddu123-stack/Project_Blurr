@@ -57,6 +57,25 @@ Alternate quick deploys:
 - Replit: import from GitHub and run the `uvicorn` command.
 - Docker: build locally with `docker build -t notes-app .` and run `docker run -p 8000:8000 -e PORT=8000 notes-app`.
 
+Persistent storage on Render
+----------------------------
+
+By default the app stores notes in `data/notes.json` inside the container. On Render this filesystem is ephemeral and may be lost after redeploys or instance restarts. To make notes persistent you can attach a Render Persistent Disk and point the app to store notes there.
+
+Steps:
+
+1. In the Render dashboard open your service and click **Disks** → **Add Disk**. Create a disk and choose a mount point (for example `/data`).
+2. In your service settings add an environment variable `NOTES_PATH` with the value `/data/notes.json` (or a directory like `/data` — the app will use `/data/notes.json`).
+3. Redeploy the service (or push a new commit). The app will write notes to the path specified by `NOTES_PATH` and those files will persist across restarts.
+
+Quick test after deploy:
+
+```powershell
+curl -i https://<your-service>.onrender.com/api/notes
+```
+
+If you prefer a managed database instead (Postgres), I can help migrate the storage to Postgres and update the app accordingly.
+
 Files of interest:
 - `app/main.py` — backend + simple file-based storage
 - `app/static` — frontend files

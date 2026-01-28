@@ -6,10 +6,24 @@ from typing import List, Optional
 import threading
 import json
 from pathlib import Path
+import os
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "data"
-NOTES_FILE = DATA_DIR / "notes.json"
+
+# Allow overriding the notes file path via an environment variable. This
+# lets hosting providers mount a persistent disk and point `NOTES_PATH`
+# at that location (file or directory). If `NOTES_PATH` is a directory,
+# we'll use `<NOTES_PATH>/notes.json`.
+NOTES_PATH_ENV = os.getenv("NOTES_PATH")
+if NOTES_PATH_ENV:
+    candidate = Path(NOTES_PATH_ENV)
+    if candidate.is_dir():
+        NOTES_FILE = candidate / "notes.json"
+    else:
+        NOTES_FILE = candidate
+else:
+    DATA_DIR = ROOT / "data"
+    NOTES_FILE = DATA_DIR / "notes.json"
 
 class Note(BaseModel):
     id: Optional[str] = None
