@@ -1,0 +1,19 @@
+[
+  {
+    "id": "sample-1",
+    "title": "My first note",
+    "content": "<p>This is a sample note. Try selecting text and clicking <strong>Highlight</strong> or <strong>Circle</strong>.</p>",
+    "side_notes": [
+      "Remember to follow up",
+      "Idea: expand this into a plan"
+    ]
+  },
+  {
+    "id": "49547c30-d139-4391-808d-13d8480d6fa0",
+    "title": "pytest note",
+    "content": "<p>hello</p>",
+    "side_notes": [
+      "s1"
+    ]
+  }
+]

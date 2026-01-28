@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Minimal Notes</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="toolbar">
+      <input id="title" placeholder="Title" />
+      <button id="add-headline">Add Headline</button>
+      <button id="highlight">Highlight</button>
+      <button id="circle">Circle</button>
+      <button id="side-note">Add Side Note</button>
+      <button id="save">Save</button>
+    </div>
+
+    <div class="container">
+      <div id="editor" contenteditable="true" class="editor" spellcheck="true">
+        <p>Start writing your thoughts here. Select text and use toolbar to highlight or circle.</p>
+      </div>
+      <div id="side" class="side">
+        <h3>Side Notes</h3>
+        <ul id="side-list"></ul>
+      </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
