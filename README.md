@@ -76,6 +76,20 @@ curl -i https://<your-service>.onrender.com/api/notes
 
 If you prefer a managed database instead (Postgres), I can help migrate the storage to Postgres and update the app accordingly.
 
+Postgres migration (one-click on Render)
+--------------------------------------
+
+If you want durable, managed storage, Render offers a managed Postgres database. After creating a Postgres instance on Render, set the `DATABASE_URL` environment variable on your Web Service to the provided connection string (for example: `postgres://user:pass@host:5432/dbname`). The app detects `DATABASE_URL` at startup and will automatically create the `notes` table and start using Postgres for storage.
+
+Steps summary:
+
+1. In Render, create a new **Postgres** instance (Free plan available).
+2. Copy the `DATABASE_URL` provided by Render.
+3. In your Web Service settings, set `DATABASE_URL` to the connection string.
+4. Redeploy the Web Service. The app will auto-migrate the `notes` table and start storing notes in Postgres.
+
+After that, saving notes from the UI will persist in the managed Postgres database.
+
 Files of interest:
 - `app/main.py` — backend + simple file-based storage
 - `app/static` — frontend files
