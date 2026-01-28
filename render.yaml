@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: Project_Blurr
+    env: docker
+    repo: https://github.com/varmasiddu123-stack/Project_Blurr
+    branch: main
+    plan: free
+    autoDeploy: true
+    dockerfilePath: Dockerfile
+    envVars:
+      - key: PORT
+        value: "8000"
